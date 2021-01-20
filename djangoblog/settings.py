@@ -33,13 +33,14 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 
 #register the authentication backends
 AUTHENTICATION_BACKENDS = {
-    "https://blog-django-auth0.herokuapp.com/login/auth0/",
-    "https://blog-django-auth0.herokuapp.com/",
+    "auth0login.auth0backend.Auth0",
+    "django.contrib.auth.backends.ModelBackend",
+}
 }
 
 #login and redirect path from backend auth0
-LOGIN_URL = "/login/auth0"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "https://blog-django-auth0.herokuapp.com/login/auth0/"
+LOGIN_REDIRECT_URL = "https://blog-django-auth0.herokuapp.com/"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
