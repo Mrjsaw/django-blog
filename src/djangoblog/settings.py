@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import django_heroku
+
+
+#add heroku settings to project
+django_heroku.settings(locals())
 
 project_folder = os.path.expanduser('C:\\Users\\imanu\\Documents\\django-blog\\src') # update this line to your path
 load_dotenv(os.path.join(project_folder, '.env')) 
