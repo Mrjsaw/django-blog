@@ -16,8 +16,6 @@ import os
 import django_heroku
 
 
-#add heroku settings to project
-django_heroku.settings(locals())
 
 project_folder = os.path.expanduser('C:\\Users\\imanu\\Documents\\django-blog\\src') # update this line to your path
 load_dotenv(os.path.join(project_folder, '.env')) 
@@ -36,8 +34,8 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 
 #register the authentication backends
 AUTHENTICATION_BACKENDS = {
-    "auth0login.auth0backend.Auth0",
-    "django.contrib.auth.backends.ModelBackend",
+    "https://blog-django-auth0.herokuapp.com/login/auth0",
+    "https://blog-django-auth0.herokuapp.com/",
 }
 
 #login and redirect path from backend auth0
@@ -157,3 +155,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#add heroku settings to project MUST be placed at the end
+django_heroku.settings(locals())
