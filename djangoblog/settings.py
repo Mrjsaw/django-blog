@@ -14,7 +14,22 @@ from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 import os
 import django_heroku
-
+import logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
 
 
 ENV_FILE = find_dotenv()
@@ -156,6 +171,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+   ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'djangoblog.storage.WhiteNoiseStaticFilesStorage'
+
+
 
 #add heroku settings to project MUST be placed at the end
 django_heroku.settings(locals())
