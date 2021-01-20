@@ -1,2 +1,2 @@
 
-web: gunicorn src/djangoblog.wsgi
+web: gunicorn djangoblog.wsgi
