@@ -17,13 +17,12 @@ import django_heroku
 
 
 
-project_folder = os.path.expanduser('C:\\Users\\imanu\\Documents\\django-blog\\src') # update this line to your path
+project_folder = Path(__file__).resolve().parent.parent 
 load_dotenv(os.path.join(project_folder, '.env')) 
 
 SOCIAL_AUTH_AUTH0_DOMAIN = os.getenv("SOCIAL_AUTH_AUTH0_DOMAIN")
 SOCIAL_AUTH_AUTH0_KEY = os.getenv("SOCIAL_AUTH_AUTH0_KEY")
 SOCIAL_AUTH_AUTH0_SECRET = os.getenv("SOCIAL_AUTH_AUTH0_SECRET")
-
 
 #scopes that the application requests for when authenticating with auth0
 SOCIAL_AUTH_AUTH0_SCOPE = [
@@ -34,7 +33,7 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 
 #register the authentication backends
 AUTHENTICATION_BACKENDS = {
-    "https://blog-django-auth0.herokuapp.com/login/auth0",
+    "https://blog-django-auth0.herokuapp.com/login/auth0/",
     "https://blog-django-auth0.herokuapp.com/",
 }
 
