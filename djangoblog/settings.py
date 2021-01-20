@@ -36,7 +36,7 @@ AUTHENTICATION_BACKENDS = {
     "auth0login.auth0backend.Auth0",
     "django.contrib.auth.backends.ModelBackend",
 }
-}
+
 
 #login and redirect path from backend auth0
 LOGIN_URL = "https://blog-django-auth0.herokuapp.com/login/auth0/"
