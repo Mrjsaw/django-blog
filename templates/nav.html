@@ -17,12 +17,14 @@
                 {{ request.user }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if request.user.is_staff %}
+                    <a class="dropdown-item" href="/admin">Admin</a>
+                    {% endif %}
                     <a class="dropdown-item" href="/logout">Logout</a>
             </div>
           </li>
         </ul>
+      </div>
         {% endif %}
-
-    </div>
   </div>
 </nav>

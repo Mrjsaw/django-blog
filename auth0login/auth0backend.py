@@ -1,6 +1,7 @@
 from urllib import request
 from jose import jwt
 from social_core.backends.oauth import BaseOAuth2
+
 class Auth0(BaseOAuth2):
     """Auth0 OAuth authentication backend"""
     name = "auth0"

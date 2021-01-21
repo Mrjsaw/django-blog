@@ -9,13 +9,54 @@
 
     <div class="container">
         {% for i in posts %} 
-        <h1>{{ i.title}}</h1> 
-        <h6> {{i.author}} </h6> 
-        <p>{{ i.description }}</p> 
-        <code> {{ i.description_markdown }} </code> 
-        <p>{{ i.create}}</p> 
-        <p>{{ i.update}}</p> 
-        {% endfor %} 
+        <div class="card mb-4 wow fadeIn">
+            <!--Card content-->
+            <div class="card-header font-weight-bold">{{ i.title }}</div>
+            <div class="card-body">
+                <div class="media d-block d-md-flex mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                    <img class="d-flex mb-3 mx-auto " height="50" width="50" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg" alt="Generic placeholder image">
+                    <h5 class="text-center">{{i.author}}</h5>
+                    <p class="text-center"><small>{{i.create }}</small></p>
+                    <p class="text-center"><small>{{i.update }}</small></p>
+                    </div>
+                    </div>
+                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+
+                    <p>{{i.description}}</p>
+                    <p> {{ i.description_markdown }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--Comments-->
+        <div class="card card-comments mb-3 wow fadeIn">
+            <div class="card-header font-weight-bold">3 comments</div>
+            <div class="card-body">
+                {% for c in comments %} 
+                {% if c.post_id == i.id %}
+                <div class="media d-block d-md-flex mt-4">
+                    <img class="d-flex mb-3 mx-auto " height="50" width="50" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg" alt="Generic placeholder image">
+                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                            <h5 class="mt-0 font-weight-bold">{{c.name}}</h5>
+                            <p>{{c.content}}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %} 
+                </div>
+            <!-- Quick Reply -->
+            <form action="addComment" method="POST">
+                {% csrf_token %}
+                <p class="text-center">Leave a Comment: </p>
+                <textarea class="form-control" name="content"></textarea>
+                <input type="hidden" value="{{ i.id }}" name="post_id">
+                <div style="text-align:center;">
+                <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+            {% endfor %} 
 </div>
 
 {% include "footer.html" %}

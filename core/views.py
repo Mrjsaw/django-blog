@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.utils.decorators import method_decorator
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as log_out
 from urllib.parse import urlencode
@@ -27,13 +28,30 @@ def logout(request):
 
     return HttpResponseRedirect(logout_url)
 
+
+def addComment(request):
+    post = get_object_or_404(Post, id= request.POST.get('post_id'))
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post= post
+            comment.name = request.user.username
+            comment.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = CommentForm()
+    return HttpResponseRedirect('/')
+   
 class PostListView(View):
+
     @method_decorator(login_required)
-    
     def dispatch(self, *args, **kwargs):
         return super(PostListView, self).dispatch(*args, **kwargs)
 
     def get(self, request):
         posts = Post.objects.all()
-        context = {"posts": posts}
+        comments = Comment.objects.all()
+        context = {"posts": posts, "comments": comments}
         return render(request, "base.html", context)
+
