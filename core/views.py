@@ -12,8 +12,7 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     user = request.user
-
-    if user.is_authenticated and user.email_verified:
+    if user.is_authenticated:
         return redirect("/blog")        
     else:
         return render(request, "index.html")
