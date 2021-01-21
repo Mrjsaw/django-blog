@@ -5,10 +5,10 @@
 
 <body>
 
-    {% include 'nav.html' %}
+    <div class="container">
 
     {% if posts %}
-        <ul class="messages">
+        <ul class="posts">
             {% for i in posts %} 
             <h1>{{ i.title}}</h1> 
             <h6> {{i.author}} </h6> 
@@ -20,9 +20,7 @@
         </ul>
     {% endif %}
 
-    {% block content %}
-    {% endblock content %}
-
+</div>
 </body>
 
 </html>

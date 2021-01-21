@@ -14,7 +14,7 @@ def index(request):
     user = request.user
     print(user)
     if user.is_authenticated:
-        return redirect("/codes")
+        return redirect("/blog")
     else:
         return render(request, "index.html")
 
