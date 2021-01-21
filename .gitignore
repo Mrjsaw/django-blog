@@ -1,4 +1,6 @@
+# Python virtual env directory
 env/
 
+# Remove these when deploying
 staticfiles/*
 .env
