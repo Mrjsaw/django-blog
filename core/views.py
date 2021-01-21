@@ -36,4 +36,4 @@ class PostListView(View):
     def get(self, request):
         posts = Post.objects.all()
         context = {"posts": posts}
-        return render(request, "home.html", context)
+        return render(request, "base.html", context)
