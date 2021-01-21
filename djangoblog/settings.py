@@ -14,22 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 import os
 import django_heroku
-import logging
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-    },
-}
 
 
 ENV_FILE = find_dotenv()
@@ -66,7 +50,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0udj(n5n#dgj^by4d_a-9w#+f**q^do&9us_^c=&^#jik$m90j'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -125,9 +109,9 @@ WSGI_APPLICATION = 'djangoblog.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "djangoblog",
-        "USER": "imaa",
-        "PASSWORD": "ima",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '5433',
     }
@@ -179,7 +163,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'djangoblog.storage.WhiteNoiseStaticFilesStorage'
-
 
 
 #add heroku settings to project MUST be placed at the end
