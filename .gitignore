@@ -4,3 +4,7 @@ env/
 # Remove these when deploying
 staticfiles/*
 .env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
