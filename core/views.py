@@ -8,7 +8,7 @@ from django.contrib.auth import logout as log_out
 from urllib.parse import urlencode
 from django.conf import settings
 from django.http import HttpResponseRedirect
-
+import html
 # Create your views here.
 
 def index(request):
@@ -30,7 +30,9 @@ def logout(request):
 
 
 def addComment(request):
-    post = get_object_or_404(Post, id= request.POST.get('post_id'))
+    #Escape input 
+    escaped_id = html.escape(request.POST.get('post_id'))
+    post = get_object_or_404(Post, id= escaped_id)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
