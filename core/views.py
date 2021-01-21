@@ -14,7 +14,7 @@ def index(request):
     user = request.user
     print(user)
     if user.is_authenticated:
-        return redirect("/blog")
+        return redirect("/codes")
     else:
         return render(request, "index.html")
 
@@ -36,4 +36,4 @@ class PostListView(View):
     def get(self, request):
         posts = Post.objects.all()
         context = {"posts": posts}
-        return render(request, "base.html", context)
+        return render(request, "home.html", context)
