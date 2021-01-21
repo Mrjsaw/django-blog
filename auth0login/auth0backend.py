@@ -36,4 +36,5 @@ class Auth0(BaseOAuth2):
             "picture": payload["picture"],
             "user_id": payload["sub"],
             "email": payload["email"],
+            "email_verified": payload["email_verified"]
         }
