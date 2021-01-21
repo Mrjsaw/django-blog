@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+{% include "head.html" %}
+
+<body>
+
+    {% include 'nav.html' %}
+
+    {% if posts %}
+        <ul class="messages">
+            {% for i in posts %} 
+            <h1>{{ i.title}}</h1> 
+            <h6> {{i.author}} </h6> 
+            <p>{{ i.description }}</p> 
+            <code> {{ i.description_markdown }} </code> 
+            <p>{{ i.create}}</p> 
+            <p>{{ i.update}}</p> 
+        {% endfor %} 
+        </ul>
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+
+</body>
+
+</html>
