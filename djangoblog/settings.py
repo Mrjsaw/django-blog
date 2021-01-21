@@ -35,6 +35,7 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 AUTHENTICATION_BACKENDS = {
     "auth0login.auth0backend.Auth0",
     "django.contrib.auth.backends.ModelBackend",
+    "django.contrib.auth.backends.RemoteUserBackend",
 }
 
 
@@ -67,10 +68,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'core',
     'social_django',
     'auth0login',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        'auth0authorization.utils.jwt_get_username_from_payload_handler',
+    'JWT_DECODE_HANDLER':
+        'auth0authorization.utils.jwt_decode_token',
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': 'YOUR_API_IDENTIFIER',
+    'JWT_ISSUER': 'https://djangoblog.eu.auth0.com/',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +102,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
