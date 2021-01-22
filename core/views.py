@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as log_out
 from urllib.parse import urlencode
 from django.conf import settings
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 import html
 
 # inheritance custom 401
@@ -17,6 +17,9 @@ class Http401(HttpResponse):
     def __init__(self):
         super().__init__('401 Unauthorized', status=401)
 
+
+def getCountById(self,id):
+    
 # Create your views here.
 
 def index(request):
@@ -36,12 +39,13 @@ def logout(request):
 
     return HttpResponseRedirect(logout_url)
 
+@login_required
 def profile(request):
     user = request.user  
     if user.is_authenticated:
         context = {"user": user}
         return render(request, "profile.html",context)
-    return HttpResponse('401 Unauthorized', status=401)
+    return HttpResponseForbidden()
 
 
 def addComment(request):
@@ -74,4 +78,3 @@ class PostListView(View):
         comments = Comment.objects.all()
         context = {"posts": posts, "comments": comments}
         return render(request, "base.html", context)
-
