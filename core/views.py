@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.views.generic import View
 from django.utils.decorators import method_decorator
 from .models import Post, Comment
@@ -7,8 +8,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as log_out
 from urllib.parse import urlencode
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 import html
+
+# inheritance custom 401
+
+class Http401(HttpResponse):
+    def __init__(self):
+        super().__init__('401 Unauthorized', status=401)
+
 # Create your views here.
 
 def index(request):
@@ -27,6 +35,12 @@ def logout(request):
     )
 
     return HttpResponseRedirect(logout_url)
+
+def profile(request):
+    if user.is_authenticated:
+        user = request.user        
+        return render(request, "profile.html")
+    return HttpResponse('401 Unauthorized', status=401)
 
 
 def addComment(request):
