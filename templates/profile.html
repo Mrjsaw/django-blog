@@ -11,6 +11,34 @@
 
 <div class="container">
     <p>Welcome to your profile, <i>{{user.username}}</i></p>
+    <p>{{user.email}}</p>
+    <form action="deleteComments" method="POST">
+        {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Delete all Comments</button>
+    </form>
+    <form action="deleteUser" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Delete current User</button>
+    </form>
+    <br><br>
+    {% if comments %}
+    <div class="card card-comments mb-3 wow fadeIn">
+        <div class="card-header font-weight-bold">All Comments:</div>
+        <div class="card-body">
+            {% for c in comments %}
+            <div class="media d-block d-md-flex mt-4">
+                <img class="d-flex mb-3 mx-auto " height="50" width="50" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg" alt="Generic placeholder image">
+                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                        <h5 class="mt-0 font-weight-bold">{{c.name}}</h5>
+                        <p>{{c.content}}</p>
+                    </div>
+                </div>
+            {% endfor %} 
+            </div>
+    </div>
+        {% else %}
+        <p style="text-align:center;">You have no recorded comments!</p>
+        {% endif %}
 </div>
 
 {% include "footer.html" %}

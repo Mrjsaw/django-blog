@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -18,10 +19,7 @@ class TimeCheckModel(models.Model):
 class Post(TimeCheckModel):
 
     title = models.CharField(max_length=250)
-    description = models.TextField()
-
-    #used to add html markdown to description
-    description_markdown = models.TextField(blank=True)
+    content = models.TextField()
     author = models.CharField(max_length=250)
 
     #override str() to return title
@@ -35,7 +33,10 @@ class Comment(models.Model):
     content = models.TextField()
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now=True, verbose_name="Created At")
-    name = models.CharField(max_length=80) 
+    name = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self):
         return self.content

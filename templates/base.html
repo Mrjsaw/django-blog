@@ -11,21 +11,24 @@
         {% for i in posts %} 
         <div class="card mb-4 wow fadeIn">
             <!--Card content-->
-            <div class="card-header font-weight-bold">{{ i.title }}</div>
+            <div class="card-header font-weight-bold d-flex"><p> <b>#{{i.id}}</b></p><h5 class="container">{{ i.title }}</h5></div>
             <div class="card-body">
                 <div class="media d-block d-md-flex mt-4">
                     <div class="card">
                         <div class="card-body">
                     <img class="d-flex mb-3 mx-auto " height="50" width="50" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg" alt="Generic placeholder image">
                     <h5 class="text-center">{{i.author}}</h5>
-                    <p class="text-center"><small>{{i.create }}</small></p>
-                    <p class="text-center"><small>{{i.update }}</small></p>
+                    <p class="text-center" style="color:dimgray; margin: 0;"><small><b>Posted on:</b></small></p>
+                    <p class="text-center" style="color:dimgray; margin: 0;"><small>{{i.create }}</small></p>
+                    {% if i.create != i.update %}
+                    <p class="text-center" style="color:dimgray; margin: 0;"><small><b>Last Edited:</b></small></p>
+                    <p class="text-center" style="color:dimgray; margin: 0;"><small>{{i.update }}</small></p>
+                    {% endif %}
                     </div>
                     </div>
                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
 
-                    <p>{{i.description}}</p>
-                    <p> {{ i.description_markdown }} </p>
+                    <p>{{i.content}}</p>
                 </div>
             </div>
         </div>

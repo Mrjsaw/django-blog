@@ -9,6 +9,9 @@ from django.contrib.auth import logout as log_out
 from urllib.parse import urlencode
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
+from django.views.generic.edit import DeleteView
+from django.urls import reverse
+from django.views.decorators.http import require_http_methods
 import html
 
 # inheritance custom 401
@@ -19,6 +22,26 @@ class Http401(HttpResponse):
    
 # Create your views here.
 
+#post request that deletes all comments and user information
+@require_http_methods(["POST"])
+def deleteUser(request):
+    user = request.user
+    if user.is_authenticated:
+        user.delete()
+        return render(request, "index.html")
+    return HttpResponseForbidden()
+
+#post request to delete all comments made by this user
+@require_http_methods(["POST"])
+def deleteComments(request):
+    user = request.user
+    if user.is_authenticated:
+        for comment in Comment.objects.all():
+            if comment.name == user:
+                comment.delete()
+        return render(request, "profile.html", {"user":user,"comments":[comment for comment in Comment.objects.all() if comment.name == user]})
+    return HttpResponseForbidden()
+
 def index(request):
     user = request.user
     if user.is_authenticated:
@@ -28,6 +51,12 @@ def index(request):
         return render(request, "index.html")
 
 def logout(request):
+    #custom logout for admin accounts when testing in dev-mode:
+    #if request.user.is_staff:
+    #    log_out(request)
+    #    return render(request, "index.html")
+    
+    #auth0 logout
     log_out(request)
     return_to = urlencode({"returnTo": request.build_absolute_uri("/")})
     logout_url = "https://{}/v2/logout?client_id={}&{}".format(
@@ -40,7 +69,8 @@ def logout(request):
 def profile(request):
     user = request.user  
     if user.is_authenticated:
-        context = {"user": user}
+        comments = [comment for comment in Comment.objects.all() if comment.name == request.user]
+        context = {"user": user, "comments":comments}
         return render(request, "profile.html",context)
     return HttpResponseForbidden()
 
@@ -54,10 +84,7 @@ def addComment(request):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post= post
-            if request.user.is_staff:
-                comment.name = "ADMIN"
-            else:
-                comment.name = request.user.username
+            comment.name = request.user
             comment.save()
             return HttpResponseRedirect('/')
     else:
