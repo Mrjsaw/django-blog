@@ -18,7 +18,7 @@ class TimeCheckModel(models.Model):
 
 class Post(TimeCheckModel):
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=64)
     content = models.TextField()
     author = models.CharField(max_length=250)
 
