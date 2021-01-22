@@ -39,7 +39,7 @@ def logout(request):
 
     return HttpResponseRedirect(logout_url)
 
-@login_required
+
 def profile(request):
     user = request.user  
     if user.is_authenticated:
