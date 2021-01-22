@@ -12,14 +12,11 @@ from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidde
 import html
 
 # inheritance custom 401
-
 class Http401(HttpResponse):
     def __init__(self):
         super().__init__('401 Unauthorized', status=401)
 
-
-def getCountById(self,id):
-    
+   
 # Create your views here.
 
 def index(request):
@@ -39,7 +36,7 @@ def logout(request):
 
     return HttpResponseRedirect(logout_url)
 
-
+@login_required
 def profile(request):
     user = request.user  
     if user.is_authenticated:
