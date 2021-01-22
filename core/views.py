@@ -37,9 +37,10 @@ def logout(request):
     return HttpResponseRedirect(logout_url)
 
 def profile(request):
+    user = request.user  
     if user.is_authenticated:
-        user = request.user        
-        return render(request, "profile.html")
+        context = {"user": user}
+        return render(request, "profile.html",context)
     return HttpResponse('401 Unauthorized', status=401)
 
 
