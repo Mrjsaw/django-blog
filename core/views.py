@@ -38,7 +38,10 @@ def addComment(request):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post= post
-            comment.name = request.user.username
+            if request.user.is_staff:
+                comment.name = "ADMIN"
+            else:
+                comment.name = request.user.username
             comment.save()
             return HttpResponseRedirect('/')
     else:
