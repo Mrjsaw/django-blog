@@ -40,8 +40,8 @@ AUTHENTICATION_BACKENDS = {
 
 
 #login and redirect path from backend auth0
-LOGIN_URL = "https://blog-django-auth0.herokuapp.com/login/auth0/"
-LOGIN_REDIRECT_URL = "https://blog-django-auth0.herokuapp.com/"
+LOGIN_URL = "https://cyberbl0g.herokuapp.com/login/auth0/"
+LOGIN_REDIRECT_URL = "https://cyberbl0g.herokuapp.com/"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
