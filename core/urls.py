@@ -1,11 +1,10 @@
 from django.urls import path, include
-from .views import PostListView, index, logout, addComment, profile, deleteUser, deleteComments, api, terms, contact, unauthorizedEmail
+from .views import PostListView, index, logout, addComment, profile, deleteUser, deleteComments, api, terms, contact
 
 urlpatterns = [
     path("", index),
     path("blog", PostListView.as_view()),
     path("api", api),
-    path("complete/auth0/",unauthorizedEmail),
     path("terms", terms),
     path("logout", logout),
     path("contact",contact),

@@ -21,12 +21,6 @@ class Http401(HttpResponse):
 
    
 # Create your views here.
-def unauthorizedEmail(request):
-    escaped_err = html.escape(request.POST.get('error'))
-    #if escaped_err == 'unauthorized':
-    log_out(request)
-    return redirect('/')
-
 
 def contact(request):
     return render(request, "contact.html")
