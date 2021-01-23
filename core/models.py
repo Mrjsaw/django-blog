@@ -20,7 +20,7 @@ class Post(TimeCheckModel):
 
     title = models.CharField(max_length=64)
     content = models.TextField()
-    author = models.CharField(max_length=250)
+    author = models.CharField(max_length=24)
 
     #override str() to return title
     def __str__(self):

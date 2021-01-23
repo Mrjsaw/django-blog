@@ -21,6 +21,14 @@ class Http401(HttpResponse):
 
    
 # Create your views here.
+def unauthorizedEmail(request):
+    escaped_err = html.escape(request.POST.get('error'))
+    #if escaped_err == 'unauthorized':
+    return redirect('/api/public')
+
+
+def contact(request):
+    return render(request, "contact.html")
 
 def terms(request):
     return render(request, "terms.html")
@@ -112,6 +120,5 @@ class PostListView(View):
                 if y.post_id == x.id:
                     ctr+=1
             posts_count[x.id] = ctr
-        print(posts_count)
         context = {"posts": posts, "comments": comments,"posts_count":posts_count}
         return render(request, "base.html", context)
