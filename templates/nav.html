@@ -1,13 +1,12 @@
 <!-- Main Navbar-->
 <nav class="mb-1 navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-      <a href="/" class="navbar-brand">Cyber Blog</a>
+      <a href="/" class="navbar-brand">Cyberbl0g</a>
 
     <!-- Navbar Menu -->
     {% if request.user.is_authenticated %}
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="/" class="nav-link ">Home</a></li>
         <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a></li>
         <li class="nav-item"><a href="#" class="nav-link ">Contact</a></li>
       </ul>
@@ -15,7 +14,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ request.user }}
+                {{ request.user.username }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if request.user.is_staff %}
@@ -27,6 +26,6 @@
           </li>
         </ul>
       </div>
-        {% endif %}
+    {% endif %}
   </div>
 </nav>

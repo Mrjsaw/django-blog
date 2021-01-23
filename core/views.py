@@ -22,6 +22,12 @@ class Http401(HttpResponse):
    
 # Create your views here.
 
+def terms(request):
+    return render(request, "terms.html")
+
+def api(request):
+    return render(request,"api.html")
+
 #post request that deletes all comments and user information
 @require_http_methods(["POST"])
 def deleteUser(request):
@@ -99,5 +105,13 @@ class PostListView(View):
     def get(self, request):
         posts = Post.objects.all()
         comments = Comment.objects.all()
-        context = {"posts": posts, "comments": comments}
+        posts_count = {}
+        for x in posts:
+            ctr = 0
+            for y in comments:
+                if y.post_id == x.id:
+                    ctr+=1
+            posts_count[x.id] = ctr
+        print(posts_count)
+        context = {"posts": posts, "comments": comments,"posts_count":posts_count}
         return render(request, "base.html", context)

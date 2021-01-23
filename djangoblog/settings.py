@@ -46,6 +46,8 @@ LOGIN_REDIRECT_URL = "https://cyberbl0g.herokuapp.com/"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#custom header used for API key instead of default Authorization header
+API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -54,18 +56,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 # This tells Django to trust the X-Forwarded-Proto header that comes from our proxy, and any time its value is 'https', then the request is guaranteed to be secure (i.e., it originally came in via HTTPS).
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # SecurityMiddleware redirects all non-HTTPS requests to HTTPS
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
 
 # SecurityMiddleware will set this header for you on all HTTPS responses
-SECURE_HSTS_SECONDS = 3600
+#SECURE_HSTS_SECONDS = 3600
 
 JWT_AUTH = {
     'JWT_PAYLOAD_GET_USERNAME_HANDLER':
@@ -85,7 +87,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     ),
 }
 
@@ -102,6 +103,7 @@ INSTALLED_APPS = [
     'social_django',
     'auth0login',
     'rest_framework',
+    'rest_framework_api_key',
 ]
 
 MIDDLEWARE = [

@@ -35,7 +35,13 @@
     </div>
 <!--Comments-->
         <div class="card card-comments mb-3 wow fadeIn">
-            <div class="card-header font-weight-bold">3 comments</div>
+            {% for k, v in posts_count.items %}
+            {% if k == i.id and v != 1%}
+            <div class="card-header font-weight-bold">{{v}} comments</div>
+            {% elif k == i.id and v == 1 %}
+            <div class="card-header font-weight-bold">{{v}} comment</div>
+            {% endif %}
+            {% endfor %}
             <div class="card-body">
                 {% for c in comments %} 
                 {% if c.post_id == i.id %}
@@ -56,11 +62,12 @@
                 <textarea class="form-control" name="content"></textarea>
                 <input type="hidden" value="{{ i.id }}" name="post_id">
                 <div style="text-align:center;">
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" style="margin: 10px" class="btn btn-primary">Post</button>
                 </div>
             </form>
-            <br><br>
-            {% endfor %} 
+        </div>
+        <br><br>
+        {% endfor %} 
 </div>
 
 {% include "footer.html" %}

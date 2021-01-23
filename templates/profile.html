@@ -8,22 +8,33 @@
 {% include "nav.html" %}
 
 
-
-<div class="container">
-    <p>Welcome to your profile, <i>{{user.username}}</i></p>
-    <p>{{user.email}}</p>
-    <form action="deleteComments" method="POST">
-        {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Delete all Comments</button>
-    </form>
-    <form action="deleteUser" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Delete current User</button>
-    </form>
+<div style="min-height: 100%">
+<div class="container" style="overflow: 100%;">
+    <div class="card card-comments mb-3 wow fadeIn">
+        <div class="card-header font-weight-bold text-center">Your profile</div>
+        <div class="card-body">
+            <div class="media d-block d-md-flex mt-4">
+                <img class="d-flex mb-3 mx-auto " height="50" width="50" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg" alt="Generic placeholder image">
+                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                        <p><b>Username: </b>{{user.username}}</p>
+                        <p><b>Email: </b>{{user.email}}</p>
+                        <form action="deleteComments" method="POST">
+                            {% csrf_token %}
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete?');" class="btn btn-warning">Delete Comments</button>
+                        <p style="display: inline;">This will delete all your comments from our system!</p>
+                        </form>
+                        <br>
+                        <form action="deleteUser" method="POST">
+                            {% csrf_token %}
+                            <button onclick="return confirm('Are you sure you want to delete?');" type="submit" id="delete_user" class="btn btn-danger" ">Remove User</button>
+                            <p style="display: inline;">This will <b>permanently</b> remove your user account and data from our system!</p>
+                        </form>
+                    </div>
+            </div>
     <br><br>
     {% if comments %}
     <div class="card card-comments mb-3 wow fadeIn">
-        <div class="card-header font-weight-bold">All Comments:</div>
+        <div class="card-header font-weight-bold text-center">Your comments</div>
         <div class="card-body">
             {% for c in comments %}
             <div class="media d-block d-md-flex mt-4">
@@ -40,7 +51,7 @@
         <p style="text-align:center;">You have no recorded comments!</p>
         {% endif %}
 </div>
-
+</div>
 {% include "footer.html" %}
 
 </body>

@@ -15,19 +15,36 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 </style>
-<div class="container">
+<div style="min-height: 100%">
+<div style="overflow:auto;" class="container clear-top">
     <div class="card center">
         <div class="card-body">
             <div class="container">
                 <img class="center-img" src="https://i.cloudup.com/StzWWrY34s.png" /> 
-                <h3 style="text-align: center;">Cyber Blog</h3> 
-                <p style="text-align: center;">Please log in to continue!</p> 
+                <h3 style="text-align: center;">CyberBl0g</h3> 
+                <p style="text-align: center;">Please log in to continue</p> 
+                <p style="text-align: center;"><input type="checkbox" name ="" id="terms" /> By logging in you agree to our <a href="/terms" style="color: blue">Privacy Policy</a></p>
+                
             </div>
-            <a class="btn btn-primary btn-lg btn-login btn-block" href="/login/auth0"> Log In </a> 
+            <a class="btn btn-primary btn-lg btn-login btn-block" href="/login/auth0" onClick="return checkTerms();"> Log In </a> 
         </div>
     </div> 
 </div>
+
+</div>
+
 {% include "footer.html" %}
+<script>
+    function checkTerms()
+    {
+        var ticked = document.getElementById("terms").checked;
+    
+        if(!ticked) alert("Please accept the terms");
+    
+        return ticked;
+    }
+    </script>
 </body> 
 </html>

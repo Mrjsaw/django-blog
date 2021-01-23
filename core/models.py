@@ -30,7 +30,7 @@ class Post(TimeCheckModel):
 
 class Comment(models.Model):
 
-    content = models.TextField()
+    content = models.TextField(max_length=100)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     create = models.DateTimeField(auto_now=True, verbose_name="Created At")
     name = models.ForeignKey(

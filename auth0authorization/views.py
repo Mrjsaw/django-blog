@@ -6,8 +6,11 @@ import jwt
 from django.http import JsonResponse
 
 from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes, throttle_classes
+from rest_framework.throttling import UserRateThrottle
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework_api_key.permissions import HasAPIKey
 
 # Create your views here.
 
@@ -55,3 +58,12 @@ def public(request):
 @api_view(['GET'])
 def private(request):
     return JsonResponse({'message': 'Hello from a private endpoint! You need to be authenticated to see this.'})
+
+class ThreePerDayUserThrottle(UserRateThrottle):
+    rate = '3/day'
+
+@api_view(['GET'])
+@throttle_classes([ThreePerDayUserThrottle])
+@permission_classes([HasAPIKey])
+def secret(request):
+    return JsonResponse({'message': 'Hello from a secret endpoint! You need to be have an API key to see this. RATE LIMIT 3 Times/Day'})
