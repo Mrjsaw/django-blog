@@ -32,9 +32,10 @@ class Auth0(BaseOAuth2):
             issuer=issuer,
         )
         return {
-            "username": payload["nickname"],
+            "username": payload["username"],
             "first_name": payload["name"],
             "picture": payload["picture"],
             "user_id": payload["sub"],
             "email": payload["email"],
+            "email_verified": payload["email_verified"]
         }
