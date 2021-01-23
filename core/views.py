@@ -47,7 +47,6 @@ def index(request):
     if user.is_authenticated:
         return redirect("/blog")        
     else:
-        print(request)
         return render(request, "index.html")
 
 def logout(request):
