@@ -10,9 +10,9 @@ class Auth0(BaseOAuth2):
     REDIRECT_STATE = False
     EXTRA_DATA = [("picture", "picture"), ("email", "email")]
     def authorization_url(self):
-        return "https://" + self.setting("DOMAIN") + "/authorize"
+        return "https://cyberbl0g.herokuapp.com/authorize"
     def access_token_url(self):
-        return "https://" + self.setting("DOMAIN") + "/oauth/token"
+        return "https://cyberbl0g.herokuapp.com/oauth/token"
     def get_user_id(self, details, response):
         """Return current user id."""
         return details["user_id"]
@@ -20,9 +20,9 @@ class Auth0(BaseOAuth2):
         # Obtain JWT and the keys to validate the signature
         id_token = response.get("id_token")
         jwks = request.urlopen(
-            "https://" + self.setting("DOMAIN") + "/.well-known/jwks.json"
+            "https://cyberbl0g.herokuapp.com/.well-known/jwks.json"
         )
-        issuer = "https://" + self.setting("DOMAIN") + "/"
+        issuer = "https://cyberbl0g.herokuapp.com/"
         audience = self.setting("KEY")  # CLIENT_ID
         payload = jwt.decode(
             id_token,
