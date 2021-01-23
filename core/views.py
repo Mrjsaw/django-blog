@@ -24,7 +24,8 @@ class Http401(HttpResponse):
 def unauthorizedEmail(request):
     escaped_err = html.escape(request.POST.get('error'))
     #if escaped_err == 'unauthorized':
-    return redirect('/api/public')
+    log_out(request)
+    return redirect('/')
 
 
 def contact(request):
