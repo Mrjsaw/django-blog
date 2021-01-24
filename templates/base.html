@@ -39,9 +39,10 @@
             {% if k == i.id and v != 1%}
             <div class="card-header font-weight-bold text-white bg-primary">{{v}} comments</div>
             {% elif k == i.id and v == 1 %}
-            <div class="card-header font-weight-bold">{{v}} comment</div>
+            <div class="card-header font-weight-bold text-white bg-primary">{{v}} comment</div>
             {% endif %}
             {% endfor %}
+            <div class="card text-white bg-danger mb3">
             <div class="card-body">
                 {% for c in comments %} 
                 {% if c.post_id == i.id %}
@@ -54,7 +55,8 @@
                     </div>
                 {% endif %}
                 {% endfor %} 
-                </div>
+            </div>
+            </div>
             <!-- Quick Reply -->
             <form action="addComment" method="POST">
                 {% csrf_token %}
