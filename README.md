@@ -1,7 +1,9 @@
 # Cyberbl0g
 This is a blog created in Python Django Framework with a focus on security.
-Take a look for yourself [Cyberbl0g](https://www.cyberbl0g.herokuapp.com "Cyberbl0g")
-Visit the API page [Here](https://www.cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
+
+Take a look for yourself [Cyberbl0g](https://cyberbl0g.herokuapp.com/ "Cyberbl0g")
+
+Visit the API page [Here](https://cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
 
 # Run Locally
 
