@@ -13,6 +13,8 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 import html
+from ratelimit.decorators import ratelimit
+
 
 # inheritance custom 401
 class Http401(HttpResponse):
@@ -22,17 +24,21 @@ class Http401(HttpResponse):
    
 # Create your views here.
 
+@ratelimit(key='ip', rate='100/h')
 @login_required
 def contact(request):
     return render(request, "contact.html")
 
+@ratelimit(key='ip', rate='100/h')
 def terms(request):
     return render(request, "terms.html")
 
+@ratelimit(key='ip', rate='100/h')
 def api(request):
     return render(request,"api.html")
 
 #post request that deletes all comments and user information
+@ratelimit(key='ip', rate='5/h')
 @require_http_methods(["POST"])
 def deleteUser(request):
     user = request.user
@@ -42,6 +48,7 @@ def deleteUser(request):
     return HttpResponseForbidden()
 
 #post request to delete all comments made by this user
+@ratelimit(key='ip', rate='10/h')
 @require_http_methods(["POST"])
 def deleteComments(request):
     user = request.user
@@ -52,6 +59,7 @@ def deleteComments(request):
         return render(request, "profile.html", {"user":user,"comments":[comment for comment in Comment.objects.all() if comment.name == user]})
     return HttpResponseForbidden()
 
+@ratelimit(key='ip', rate='100/h')
 def index(request):
     user = request.user
     if user.is_authenticated:
@@ -59,6 +67,7 @@ def index(request):
     else:
         return render(request, "index.html")
 
+@ratelimit(key='ip', rate='100/h')
 def logout(request):
     #custom logout for admin accounts when testing in dev-mode:
     #if request.user.is_staff:
@@ -74,6 +83,7 @@ def logout(request):
 
     return HttpResponseRedirect(logout_url)
 
+@ratelimit(key='ip', rate='100/h')
 @login_required
 def profile(request):
     user = request.user  
@@ -84,6 +94,7 @@ def profile(request):
     return HttpResponseForbidden()
 
 
+@ratelimit(key='ip', rate='100/h')
 def addComment(request):
     #Escape input 
     escaped_id = html.escape(request.POST.get('post_id'))
@@ -100,6 +111,7 @@ def addComment(request):
         form = CommentForm()
     return HttpResponseRedirect('/')
    
+@ratelimit(key='ip', rate='100/h')
 class PostListView(View):
 
     @method_decorator(login_required)
