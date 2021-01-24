@@ -76,7 +76,8 @@
                 <pre> This is a secret endpoint with a rate limit of 3 requests/day, please <a href="#" style="color: fuchsia;font-weight: bolder;">Contact Me</a> to request a secret API key.</pre>
               </div>
               <div>
-                <pre><b>X-Api-Key</b> <span><Your-Api-Key-Here></span></pre>
+                Header:
+                <pre class="code"><b>X-Api-Key</b>: &ltYour-Api-Key-Here&rt</pre>
               </div>
               <div>
                 <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/secret</span></pre>
@@ -103,22 +104,21 @@
               </div>
 
               <div>
-                <pre><b>POST</b> <span>https://cyberbl0g.herokuapp.com/DeleteUser</span></pre>
+                <pre><b>POST</b> <span>https://cyberbl0g.herokuapp.com/deleteUser</span></pre>
               </div>
                 <pre class="code">
-                HTTP/1.1 200 OK
-                Connection: keep-alive
-                Server: gunicorn/20.0.4
-                Date: Sun, 24 Jan 2021 12:11:06 GMT
-                Content-Type: application/json
-                Vary: Accept, Cookie
-                Allow: OPTIONS, GET
-                X-Frame-Options: DENY
-                Content-Length: 87
-                Strict-Transport-Security: max-age=3600
-                X-Content-Type-Options: nosniff
-                Referrer-Policy: same-origin
-                Via: 1.1 vegur
+                    HTTP/1.1 200 OK
+                    Connection: keep-alive
+                    Server: gunicorn/20.0.4
+                    Date: Sun, 24 Jan 2021 13:08:21 GMT
+                    Content-Type: text/html; charset=utf-8
+                    X-Frame-Options: DENY
+                    Content-Length: 4292
+                    Vary: Cookie
+                    Strict-Transport-Security: max-age=3600
+                    X-Content-Type-Options: nosniff
+                    Referrer-Policy: same-origin
+                    Via: 1.1 vegur
               </pre>
               <br><br>
               <h3>Auth0</h3>
