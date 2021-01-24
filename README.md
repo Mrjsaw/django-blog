@@ -1,5 +1,7 @@
-# django-blog
+# Cyberbl0g
 This is a blog created in Python Django Framework with a focus on security.
+Take a look for yourself [Cyberbl0g](https://www.cyberbl0g.herokuapp.com "Cyberbl0g")
+Visit the API page [Here](https://www.cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
 
 # Run Locally
 
@@ -22,6 +24,9 @@ Run server locally
 
 # Deployment on Heroku:
 
+Download HerokuCLI and push this repository to your custom heroku .git
+
 To update static folder:
 ```heroku config:set DISABLE_COLLECTSTATIC=1```
+
 ```heroku python manage.py collectstatic```
