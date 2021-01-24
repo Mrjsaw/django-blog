@@ -6,42 +6,79 @@
 <body>
     
 {% include "nav.html" %}
-
+    <style>
+    .code {
+        background-color: #eee;
+        border-left: 6px solid #00458b;
+        font-size: 1rem;
+        line-height: 1.4;
+        margin: 0 0 24px;
+        max-width: 100%;
+        overflow: auto;
+        padding: 24px;
+    }
+    </style>
     <div class="container"> 
 
         <!-- Content -->
         <div id="content">
           
               <h4>REST API</h4>
-
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"> This is a public endpoint without a rate limit!</pre>
+            <br>
+              <div>
+                <pre> This is a public endpoint without a rate limit!</pre>
               </div>
 
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"><b>GET</b> <span class="lit">https://cyberbl0g.herokuapp.com/api/public</span></pre>
+              <div>
+                <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/public</span></pre>
+              </div>
+              <pre class="code">
+                HTTP/1.1 200 OK
+                Connection: keep-alive
+                Server: gunicorn/20.0.4
+                Date: Sun, 24 Jan 2021 12:11:06 GMT
+                Content-Type: application/json
+                Vary: Accept, Cookie
+                Allow: OPTIONS, GET
+                X-Frame-Options: DENY
+                Content-Length: 92
+                Strict-Transport-Security: max-age=3600
+                X-Content-Type-Options: nosniff
+                Referrer-Policy: same-origin
+                Via: 1.1 vegur
+              </pre>
+              <br>
+              <div>
+                <pre> This is a private endpoint without a rate limit! (Make sure your account is authenticated)</pre>
+              </div>
+
+              <div>
+                <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/private</span></pre>
+              </div>
+              <br>
+              <div>
+                <pre> This is a secret endpoint with a rate limit of 3 requests/day, please <a href="#" style="color: fuchsia;font-weight: bolder;">Contact Me</a> to request a secret API key!</pre>
+              </div>
+
+              <div>
+                <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/secret</span></pre>
               </div>
               <br><br>
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"> This is a private endpoint without a rate limit! (Make sure your account is authenticated)</pre>
+              <h3>Auth0</h3>
+              <br>
+              <div>
+                <pre > This is a public endpoint without a rate limit!</pre>
               </div>
 
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"><b>GET</b> <span class="lit">https://cyberbl0g.herokuapp.com/api/private</span></pre>
+              <div>
+                <pre ><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/public</span></pre>
               </div>
-              <br><br>
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"> This is a secret endpoint with a rate limit of 3 requests/day, please <a href="#" style="color: fuchsia;font-weight: bolder;">Contact Me</a> to request a secret API key!</pre>
-              </div>
+              <br>
 
-              <div class="request-info" style="clear: both" aria-label="request info">
-                <pre class="prettyprint"><b>GET</b> <span class="lit">https://cyberbl0g.herokuapp.com/api/secret</span></pre>
-              </div>
-              <br><br>
-            </div>
         </div>
-    </div>  
-    
+            
+</div> 
+
 {% include "footer.html" %}
 
 </body>
