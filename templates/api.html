@@ -24,9 +24,10 @@
         <div id="content">
           
               <h4>REST API</h4>
+              <h3>External</h3>
             <br>
               <div>
-                <pre> This is a public endpoint without a rate limit!</pre>
+                <pre> This is a public endpoint without a rate limit.</pre>
               </div>
 
               <div>
@@ -49,30 +50,113 @@
               </pre>
               <br>
               <div>
-                <pre> This is a private endpoint without a rate limit! (Make sure your account is authenticated)</pre>
+                <pre> This is a private endpoint without a rate limit. (Make sure your account is authenticated)</pre>
               </div>
 
               <div>
                 <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/private</span></pre>
               </div>
+                <pre class="code">
+                HTTP/1.1 200 OK
+                Connection: keep-alive
+                Server: gunicorn/20.0.4
+                Date: Sun, 24 Jan 2021 12:11:06 GMT
+                Content-Type: application/json
+                Vary: Accept, Cookie
+                Allow: OPTIONS, GET
+                X-Frame-Options: DENY
+                Content-Length: 87
+                Strict-Transport-Security: max-age=3600
+                X-Content-Type-Options: nosniff
+                Referrer-Policy: same-origin
+                Via: 1.1 vegur
+              </pre>
               <br>
               <div>
-                <pre> This is a secret endpoint with a rate limit of 3 requests/day, please <a href="#" style="color: fuchsia;font-weight: bolder;">Contact Me</a> to request a secret API key!</pre>
+                <pre> This is a secret endpoint with a rate limit of 3 requests/day, please <a href="#" style="color: fuchsia;font-weight: bolder;">Contact Me</a> to request a secret API key.</pre>
               </div>
-
+              <div>
+                <pre><b>X-Api-Key</b> <span><Your-Api-Key-Here></span></pre>
+              </div>
               <div>
                 <pre><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/secret</span></pre>
               </div>
+                <pre class="code">
+                HTTP/1.1 200 OK
+                Connection: keep-alive
+                Server: gunicorn/20.0.4
+                Date: Sun, 24 Jan 2021 12:11:06 GMT
+                Content-Type: application/json
+                Vary: Accept, Cookie
+                Allow: OPTIONS, GET
+                X-Frame-Options: DENY
+                Content-Length: 111
+                Strict-Transport-Security: max-age=3600
+                X-Content-Type-Options: nosniff
+                Referrer-Policy: same-origin
+                Via: 1.1 vegur
+              </pre>
+              <br><br>
+              <h3>Internal</h3>
+              <div>
+                <pre> This is an internal endpoint to delete your own user. (Only works on authenticated Users, with CSRF protection on form)</pre>
+              </div>
+
+              <div>
+                <pre><b>POST</b> <span>https://cyberbl0g.herokuapp.com/DeleteUser</span></pre>
+              </div>
+                <pre class="code">
+                HTTP/1.1 200 OK
+                Connection: keep-alive
+                Server: gunicorn/20.0.4
+                Date: Sun, 24 Jan 2021 12:11:06 GMT
+                Content-Type: application/json
+                Vary: Accept, Cookie
+                Allow: OPTIONS, GET
+                X-Frame-Options: DENY
+                Content-Length: 87
+                Strict-Transport-Security: max-age=3600
+                X-Content-Type-Options: nosniff
+                Referrer-Policy: same-origin
+                Via: 1.1 vegur
+              </pre>
               <br><br>
               <h3>Auth0</h3>
               <br>
               <div>
-                <pre > This is a public endpoint without a rate limit!</pre>
+                <pre > This is a login route mapped to Auth0 with a rate limit of 300/day.</pre>
               </div>
 
               <div>
-                <pre ><b>GET</b> <span>https://cyberbl0g.herokuapp.com/api/public</span></pre>
+                <pre ><b>GET</b> <span>https://cyberbl0g.herokuapp.com/login/auth0</span></pre>
               </div>
+              <pre class="code">
+                HTTP/2 302 Found
+                date: Sun, 24 Jan 2021 12:52:44 GMT
+                content-type: text/html; charset=utf-8
+                content-length: 376
+                location: /u/login?
+                cf-ray: 6169e4af
+                cache-control: private, no-store, no-cache, must-revalidate, post-check=0, pre-check=0, no-transform
+                set-cookie: auth0="" Path=/; Expires=Wed, 27 Jan 2021 12:52:44 GMT; HttpOnly; Secure; SameSite=None
+                strict-transport-security: max-age=31536000
+                vary: Accept, Accept-Encoding
+                cf-cache-status: DYNAMIC
+                cf-request-id: 07d60d417
+                expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+                ot-baggage-auth0-request-id: 6169e4af2
+                ot-tracer-sampled: true
+                ot-tracer-spanid: 0c08df871e8
+                ot-tracer-traceid: 5b49a256
+                set-cookie: auth0_compat=""; Path=/; Expires=Wed, 27 Jan 2021 12:52:44 GMT; HttpOnly; Secure
+                x-auth0-requestid: 9e8a
+                x-content-type-options: nosniff
+                x-ratelimit-limit: 300
+                x-ratelimit-remaining: 299
+                x-ratelimit-reset: 1611492765
+                server: cloudflare
+                X-Firefox-Spdy: h2
+              </pre>
               <br>
 
         </div>
