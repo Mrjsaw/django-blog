@@ -64,6 +64,6 @@ class ThreePerDayUserThrottle(UserRateThrottle):
 
 @api_view(['GET'])
 @throttle_classes([ThreePerDayUserThrottle])
-@permission_classes([HasAPIKey])
+@permission_classes([HasAPIKey&AllowAny])
 def secret(request):
     return JsonResponse({'message': 'Hello from a secret endpoint! You need to be have an API key to see this. RATE LIMIT 3 Times/Day'})
