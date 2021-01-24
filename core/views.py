@@ -22,6 +22,7 @@ class Http401(HttpResponse):
    
 # Create your views here.
 
+@login_required
 def contact(request):
     return render(request, "contact.html")
 
