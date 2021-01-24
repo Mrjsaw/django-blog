@@ -13,7 +13,6 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 import html
-from django_email_verification import send_email
 
 # inheritance custom 401
 class Http401(HttpResponse):
@@ -22,18 +21,6 @@ class Http401(HttpResponse):
 
    
 # Create your views here.
-
-from django_email_verification import send_email
-from django.dispatch import receiver
-from django.db.models.signals import pre_save
-
-@receiver(pre_save, sender=User)
-def set_new_user_inactive(sender, instance, **kwargs):
-    if instance._state.adding is True:
-        print("Creating Inactive User")
-        instance.is_active = False
-    else:
-        print("Updating User Record")
 
 def contact(request):
     return render(request, "contact.html")
@@ -66,12 +53,8 @@ def deleteComments(request):
 
 def index(request):
     user = request.user
-    if user.is_authenticated and user.is_active:
+    if user.is_authenticated:
         return redirect("/blog")        
-    elif user.is_authenticated and user.is_active != True:
-        user.is_active = False
-        send_email(user)
-        return render(request, "register.html")
     else:
         return render(request, "index.html")
 
