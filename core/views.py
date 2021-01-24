@@ -13,6 +13,7 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 import html
+from django_email_verification import send_email
 
 # inheritance custom 401
 class Http401(HttpResponse):
