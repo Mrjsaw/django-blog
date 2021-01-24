@@ -103,7 +103,7 @@ INSTALLED_APPS = [
     'social_django',
     'auth0login',
     'rest_framework',
-    'rest_framework_api_key',,
+    'rest_framework_api_key',
 ]
 
 MIDDLEWARE = [
