@@ -4,7 +4,7 @@ from .views import PostListView, index, logout, addComment, profile, deleteUser,
 urlpatterns = [
     path("", index),
     path("blog", PostListView.as_view()),
-    path("api", api),
+    path("api/page", api),
     path("terms", terms),
     path("logout", logout),
     path("contact",contact),
