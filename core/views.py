@@ -26,12 +26,6 @@ class Http401(HttpResponse):
 from django_email_verification import send_email
 
 
-def my_functional_view(request):
-    user = get_user_model().objects.create(username=username, password=password, email=email)
-    user.is_active = False  # Example
-    send_email(user)
-    return render(...)
-
 def contact(request):
     return render(request, "contact.html")
 
@@ -63,12 +57,12 @@ def deleteComments(request):
 
 def index(request):
     user = request.user
-    if user.is_active != True:
+    if user.is_authenticated and user.is_active:
+        return redirect("/blog")        
+    elif user.is_authenticated and user.is_active != True:
         user.is_active = False
         send_email(user)
         return render(request, "register.html")
-    if user.is_authenticated:
-        return redirect("/blog")        
     else:
         return render(request, "index.html")
 
