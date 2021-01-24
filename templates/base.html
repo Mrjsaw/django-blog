@@ -37,7 +37,7 @@
         <div class="card card-comments mb-3 wow fadeIn">
             {% for k, v in posts_count.items %}
             {% if k == i.id and v != 1%}
-            <div class="card-header font-weight-bold">{{v}} comments</div>
+            <div class="card-header font-weight-bold text-white bg-primary">{{v}} comments</div>
             {% elif k == i.id and v == 1 %}
             <div class="card-header font-weight-bold">{{v}} comment</div>
             {% endif %}
