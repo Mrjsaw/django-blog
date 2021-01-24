@@ -24,7 +24,16 @@ class Http401(HttpResponse):
 # Create your views here.
 
 from django_email_verification import send_email
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
+@receiver(pre_save, sender=User)
+def set_new_user_inactive(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        print("Creating Inactive User")
+        instance.is_active = False
+    else:
+        print("Updating User Record")
 
 def contact(request):
     return render(request, "contact.html")
