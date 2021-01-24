@@ -2,7 +2,7 @@
 
 This is a blog created in Python Django Framework with a focus on security.
 
-Take a look for yourself [Cyberbl0g](https://cyberbl0g.herokuapp.com/ "Cyberbl0g")
+Why don't you check it out yourself? [Cyberbl0g](https://cyberbl0g.herokuapp.com/ "Cyberbl0g")
 
 Visit the API page [Here](https://cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
 
@@ -39,7 +39,7 @@ export SOCIAL_AUTH_AUTH0_KEY = "<Auth0-Key>"
 export SOCIAL_AUTH_AUTH0_SECRET = "<Auth0-Secret>" 
 export YOUR_API_IDENTIFIER = "<Auth0-Public-Api>"
 
-export DJANGO_SECRET_KEY = "<Django-Secret"
+export DJANGO_SECRET_KEY = "<django-secret>"
 export DB_NAME = "<local-db-name>"
 export DB_USER = "<local-db-user>"
 export DB_PASSWORD = "<local-db-password>"
