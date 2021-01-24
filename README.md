@@ -6,12 +6,12 @@ Take a look for yourself [Cyberbl0g](https://cyberbl0g.herokuapp.com/ "Cyberbl0g
 
 Visit the API page [Here](https://cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
 
-Try one of the following API-keys to make a Post request to /api/secret. (Make sure you fill in the correct header value)
+Try one of the following API-keys to make a GET request to /api/secret. (Make sure you fill in the correct header value)
 
 ```  
 X-Api-Key: eeBnFVly.CbAYvNU2t7KMBOYFzRzseIjucfg3lFOv
   or
-X-Api-Key: <Your-Api-Key-Here>
+X-Api-Key: 1WtxX4Ko.MxUP0YEY6sZr3qBFHN9mAIciN2PbBKzt
 ```
 
 # Access Policy
