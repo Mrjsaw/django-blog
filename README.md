@@ -6,6 +6,30 @@ Take a look for yourself [Cyberbl0g](https://cyberbl0g.herokuapp.com/ "Cyberbl0g
 
 Visit the API page [Here](https://cyberbl0g.herokuapp.com/api/page "Cyberbl0g API")
 
+Try one of the following API-keys to make a Post request to /api/secret. (Make sure you fill in the correct header value)
+
+```  
+X-Api-Key: eeBnFVly.CbAYvNU2t7KMBOYFzRzseIjucfg3lFOv
+  or
+X-Api-Key: <Your-Api-Key-Here>
+```
+
+# Access Policy
+
+There are two types of accounts, regular users have read rights, and limited view access, however they can create comments, delete their own comments and remove their own user account. Administrator accounts are created by running:
+
+```
+python manage.py createsuperuser
+```
+
+Administrator accounts can access the /admin page and have full access to all CRUD-operations & Resources (Posts, User, Comments, SocialAuth, ...)
+
+
+# Setup
+
+Install atleast Python 3.9 & pip 20.2
+
+
 Make a .env file inside of django-blog/djangoblog:
 
 ```
